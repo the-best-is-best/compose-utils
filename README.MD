@@ -106,3 +106,49 @@ ElevatedButton(onClick = {
 ```
 
 - Note support Either<out L, out R>
+
+## V 1.1.0
+
+- Support Ktor error handler
+
+### First need run this one time
+
+```kotlin
+KtorErrorHandler.init()
+```
+
+### Second after catch error
+
+```kotlin
+
+internal class GetLecturesFilterRepository(
+    private val remoteDataSource: RemoteDataSource
+) {
+    suspend fun invoke(lecturesFilterRequest: LecturesFilterRequest): Either<Failure, LecturesFilterModel> {
+        return try {
+            val result = remoteDataSource.getLecturesFilter(lecturesFilterRequest)
+            val data = result.toModel()
+            Either.Right(data)
+        } catch (e: Exception) {
+            Either.Left(KtorErrorHandler().handle(e))
+        }
+    }
+}
+```
+
+### Third need get error from data example
+
+```kotlin
+    val result = loginUseCase.invoke(loginRequest)
+
+     result.fold(
+        right = {
+            data = it
+        },
+        left = {
+            state.value = state.value.copy(errorMessage = (it as Map)["errorMessage"],
+            errorForm = (it as Map)["invalid fields"])
+        }
+    )
+
+```
