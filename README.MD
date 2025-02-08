@@ -28,13 +28,23 @@ projects.
 Compose Utils is available on `mavenCentral()`.
 
 ```kotlin
-implementation("io.github.the-best-is-best:compose-utils:1.0.0")
+implementation("io.github.the-best-is-best:compose-utils:1.2.0")
 ```
 
 ## Setup add this in AndroidMain
 
 ```kotlin
 AndroidUtils.initialization(this)
+```
+
+## Add BackButtonHandler
+
+### If add enabled is true meaning will call func handler is false will make back direct so if true meaning disable back button
+
+```kotlin
+  BackButtonHandler(true){
+      // handler
+}
 ```
 
 ## Dispatcher

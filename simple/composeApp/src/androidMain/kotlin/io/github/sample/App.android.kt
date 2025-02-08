@@ -13,7 +13,7 @@ class AppActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         AndroidUtils.initialization(this)
-        setContent { App() }
+        setContent { Navigation() }
     }
 }
 

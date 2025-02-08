@@ -1,11 +1,12 @@
 [versions]
-kotlin = "2.0.21"
+kotlin = "2.1.10"
 compose = "1.7.3"
 agp = "8.7.1"
-androidx-activityCompose = "1.9.3"
-androidx-uiTest = "1.7.4"
+androidx-activityCompose = "1.10.0"
+androidx-uiTest = "1.7.7"
 maven-publish = "0.29.0"
 ktor = "3.0.3"
+navigationCompose = "2.8.0-alpha10"
 
 
 
@@ -20,6 +21,7 @@ ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 
 [plugins]
 

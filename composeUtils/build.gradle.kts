@@ -10,8 +10,8 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 
 plugins {
     alias(libs.plugins.multiplatform)
-//    alias(libs.plugins.compose.compiler)
-//    alias(libs.plugins.compose)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.compose)
     alias(libs.plugins.android.library)
     id("maven-publish")
     id("signing")
@@ -43,7 +43,7 @@ tasks.withType<PublishToMavenRepository> {
 
 extra["groupId"] = "io.github.the-best-is-best"
 extra["artifactId"] = "compose-utils"
-extra["version"] = "1.1.0"
+extra["version"] = "1.2.0"
 extra["packageName"] = "ComposeUtils"
 extra["packageUrl"] = "https://github.com/the-best-is-best/compose-utils"
 extra["packageDescription"] =
@@ -137,11 +137,11 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-//            implementation(compose.runtime)
-//            implementation(compose.foundation)
-//            implementation(compose.material3)
-//            implementation(compose.components.resources)
-//            implementation(compose.components.uiToolingPreview)
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.components.resources)
+            implementation(compose.components.uiToolingPreview)
 
             implementation(libs.ktor.client.core)
 
@@ -155,21 +155,21 @@ kotlin {
         }
 
         androidMain.dependencies {
-//            implementation(compose.uiTooling)
-//            implementation(libs.androidx.activityCompose)
+            implementation(compose.uiTooling)
+            implementation(libs.androidx.activityCompose)
 
             implementation(libs.ktor.client.okhttp)
 
         }
 
         jvmMain.dependencies {
-//            implementation(compose.desktop.currentOs)
+            implementation(compose.desktop.currentOs)
             implementation(libs.ktor.client.okhttp)
 
         }
 
         jsMain.dependencies {
-//            implementation(compose.html.core)
+            implementation(compose.html.core)
             implementation(libs.ktor.client.js)
         }
 
@@ -191,10 +191,10 @@ android {
             sourceCompatibility = JavaVersion.VERSION_17
             targetCompatibility = JavaVersion.VERSION_17
         }
-//        buildFeatures {
-//            //enables a Compose tooling support in the AndroidStudio
-//            compose = true
-//        }
+        buildFeatures {
+            //enables a Compose tooling support in the AndroidStudio
+            compose = true
+        }
     }
 }
 
@@ -208,25 +208,25 @@ dependencies {
     }
 }
 
-//compose.desktop {
-//    application {
-//        mainClass = "MainKt"
-//
-//        nativeDistributions {
-//            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-//            packageName = "ComposeApp"
-//            packageVersion = "1.0.0"
-//
-//            linux {
-//                iconFile.set(project.file("desktopAppIcons/LinuxIcon.png"))
-//            }
-//            windows {
-//                iconFile.set(project.file("desktopAppIcons/WindowsIcon.ico"))
-//            }
-//            macOS {
-//                iconFile.set(project.file("desktopAppIcons/MacosIcon.icns"))
-//                bundleID = "io.github.compose.utils.desktopApp"
-//            }
-//        }
-//    }
-//}
+compose.desktop {
+    application {
+        mainClass = "MainKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "ComposeApp"
+            packageVersion = "1.0.0"
+
+            linux {
+                iconFile.set(project.file("desktopAppIcons/LinuxIcon.png"))
+            }
+            windows {
+                iconFile.set(project.file("desktopAppIcons/WindowsIcon.ico"))
+            }
+            macOS {
+                iconFile.set(project.file("desktopAppIcons/MacosIcon.icns"))
+                bundleID = "io.github.compose.utils.desktopApp"
+            }
+        }
+    }
+}
