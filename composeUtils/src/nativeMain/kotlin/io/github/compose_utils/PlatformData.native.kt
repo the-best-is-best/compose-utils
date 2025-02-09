@@ -4,7 +4,7 @@ import platform.UIKit.UIDevice
 
 actual class PlatformData {
     actual val name: String
-        get() = "ios"
+        get() = "apple"
 
     actual val deviceName: String
         get() = UIDevice.currentDevice.name

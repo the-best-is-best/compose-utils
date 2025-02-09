@@ -10,7 +10,7 @@ object AndroidUtils {
         return activity.get()!!
     }
 
-    fun initialization(activity: Activity) {
+    fun initialization(activity: Activity, alias: String) {
         this.activity = WeakReference(activity)
     }
 }

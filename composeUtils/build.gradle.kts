@@ -2,7 +2,6 @@
 
 import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem
-import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
@@ -43,7 +42,7 @@ tasks.withType<PublishToMavenRepository> {
 
 extra["groupId"] = "io.github.the-best-is-best"
 extra["artifactId"] = "compose-utils"
-extra["version"] = "1.2.0"
+extra["version"] = "2.0.0"
 extra["packageName"] = "ComposeUtils"
 extra["packageUrl"] = "https://github.com/the-best-is-best/compose-utils"
 extra["packageDescription"] =
@@ -142,7 +141,6 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-
             implementation(libs.ktor.client.core)
 
 
