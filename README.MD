@@ -28,7 +28,7 @@ projects.
 Compose Utils is available on `mavenCentral()`.
 
 ```kotlin
-implementation("io.github.the-best-is-best:compose-utils:2.0.1")
+implementation("io.github.the-best-is-best:compose-utils:2.0.2")
 ```
 
 ## Setup add this in AndroidMain
@@ -124,7 +124,7 @@ ElevatedButton(onClick = {
 ### First need run this one time
 
 ```kotlin
-KtorErrorHandler.init()
+KtorErrorHandler().init()
 ```
 
 ### Second after catch error

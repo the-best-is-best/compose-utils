@@ -39,7 +39,7 @@ class KtorErrorHandler {
         badRequest: String? = null,
         forbiddenRequest: String? = null,
         internalServerError: String? = null,
-        defaultError: String?,
+        defaultError: String? = null,
         noInternetConnection: String? = null,
         unknownError: String? = null,
         badGateway: String? = null,

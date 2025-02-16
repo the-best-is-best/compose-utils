@@ -42,7 +42,7 @@ tasks.withType<PublishToMavenRepository> {
 
 extra["groupId"] = "io.github.the-best-is-best"
 extra["artifactId"] = "compose-utils"
-extra["version"] = "2.0.1"
+extra["version"] = "2.0.2"
 extra["packageName"] = "ComposeUtils"
 extra["packageUrl"] = "https://github.com/the-best-is-best/compose-utils"
 extra["packageDescription"] =
