@@ -28,7 +28,7 @@ projects.
 Compose Utils is available on `mavenCentral()`.
 
 ```kotlin
-implementation("io.github.the-best-is-best:compose-utils:1.2.0")
+implementation("io.github.the-best-is-best:compose-utils:2.0.1")
 ```
 
 ## Setup add this in AndroidMain
