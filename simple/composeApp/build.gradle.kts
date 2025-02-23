@@ -3,7 +3,6 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 
 plugins {
@@ -20,13 +19,13 @@ kotlin {
         instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
     }
 
-    jvm()
+    //  jvm()
 
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-        browser()
-        binaries.executable()
-    }
+//    @OptIn(ExperimentalWasmDsl::class)
+//    wasmJs {
+//        browser()
+//        binaries.executable()
+//    }
 
     listOf(
         iosX64(),
@@ -50,6 +49,8 @@ kotlin {
             implementation(libs.navigation.compose)
 
             implementation(project(":composeUtils"))
+
+
         }
 
         commonTest.dependencies {
@@ -61,6 +62,8 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.uiTooling)
             implementation(libs.androidx.activityCompose)
+
+
         }
 
         jvmMain.dependencies {
@@ -68,6 +71,8 @@ kotlin {
         }
 
         iosMain.dependencies {
+
+
         }
 
     }

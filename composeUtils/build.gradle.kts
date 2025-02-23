@@ -2,6 +2,7 @@
 
 import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem
+import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
@@ -42,7 +43,7 @@ tasks.withType<PublishToMavenRepository> {
 
 extra["groupId"] = "io.github.the-best-is-best"
 extra["artifactId"] = "compose-utils"
-extra["version"] = "2.0.2"
+extra["version"] = "3.0.0-alpha01"
 extra["packageName"] = "ComposeUtils"
 extra["packageUrl"] = "https://github.com/the-best-is-best/compose-utils"
 extra["packageDescription"] =
@@ -143,13 +144,15 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.ktor.client.core)
 
+//            implementation(libs.konnectivity)
+
 
         }
 
         commonTest.dependencies {
             implementation(kotlin("test"))
-//            @OptIn(ExperimentalComposeLibrary::class)
-//            implementation(compose.uiTest)
+            @OptIn(ExperimentalComposeLibrary::class)
+            implementation(compose.uiTest)
         }
 
         androidMain.dependencies {
@@ -173,6 +176,10 @@ kotlin {
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+
+        }
+        nativeMain.dependencies {
+
         }
 
     }
