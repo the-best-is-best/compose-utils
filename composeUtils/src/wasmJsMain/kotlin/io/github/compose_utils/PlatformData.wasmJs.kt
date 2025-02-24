@@ -3,7 +3,7 @@ package io.github.compose_utils
 import kotlinx.browser.window
 
 actual class PlatformData {
-    val userAgent = window.navigator.userAgent
+    private val userAgent = window.navigator.userAgent
 
 
     actual val name: String

@@ -1,5 +1,5 @@
 import androidx.compose.ui.window.ComposeUIViewController
-import io.github.sample.NetworkConnectivityScreen
+import io.github.sample.App
 import platform.UIKit.UIViewController
 
-fun MainViewController(): UIViewController = ComposeUIViewController { NetworkConnectivityScreen() }
+fun MainViewController(): UIViewController = ComposeUIViewController { App() }

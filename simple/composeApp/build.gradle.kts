@@ -53,7 +53,12 @@ kotlin {
 
             implementation(libs.navigation.compose)
 
-            implementation(project(":composeUtils"))
+//            implementation(project(":composeUtils"))
+            implementation(project(":networkConectivity"))
+            implementation(project(":composeUtilsCore"))
+            implementation(project(":composeUtilsNavigation"))
+            implementation(project(":ktorErrorHandler"))
+
 
 
         }
@@ -67,6 +72,8 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.uiTooling)
             implementation(libs.androidx.activityCompose)
+
+            implementation(project(":composeUtilsAndroid"))
 
 
         }
@@ -86,14 +93,6 @@ kotlin {
 tasks.register<Copy>("copyWasmResources") {
     from("src/wasmJsMain/resources") // مجلد الموارد
     into("build/dist/wasmJs/productionExecutable") // الدليل الذي يبحث فيه المتصفح
-}
-
-tasks.named("wasmJsBrowserDistribution") {
-    dependsOn("copyWasmResources")
-}
-
-tasks.named("jsRun") {
-    dependsOn("jsBrowserDistribution")
 }
 
 

@@ -29,6 +29,15 @@ dependencyResolutionManagement {
         maven("https://maven.pkg.jetbrains.space/kotlin/p/wasm/experimental")
         maven("https://maven.pkg.jetbrains.space/public/p/ktor/eap")
     }
+
 }
-include(":composeUtils")
+
+//include(":composeUtils")
 include(":simple:composeApp")
+
+include(":composeUtilsAndroid")
+
+include(":networkConectivity")
+include(":composeUtilsCore")
+include(":composeUtilsNavigation")
+include(":ktorErrorHandler")

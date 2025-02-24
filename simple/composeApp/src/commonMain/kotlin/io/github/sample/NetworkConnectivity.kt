@@ -19,12 +19,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.github.compose_utils.network_checker.NetworkChecker
-import io.github.compose_utils.network_checker.NetworkStatus
+import androidx.navigation.NavController
+import io.github.compose.network_checker.NetworkChecker
+import io.github.compose.network_checker.NetworkStatus
 import kotlinx.coroutines.launch
 
 @Composable
-fun NetworkConnectivityScreen() {
+fun NetworkConnectivityScreen(navController: NavController) {
     val networkChecker = NetworkChecker()
     val scope = rememberCoroutineScope()
 
@@ -39,6 +40,14 @@ fun NetworkConnectivityScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item {
+
+            ElevatedButton(onClick = {
+                navController.popBackStack()
+            }) {
+                Text("Go back")
+            }
+            Spacer(Modifier.height(10.dp))
+
             Text("network is ${status?.isConnected}")
             Text("network type is ${status?.networkType?.name}")
 

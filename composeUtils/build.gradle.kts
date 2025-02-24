@@ -1,6 +1,5 @@
 @file:OptIn(ExperimentalKotlinGradlePluginApi::class)
 
-import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
@@ -13,8 +12,8 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose)
     alias(libs.plugins.android.library)
-    id("maven-publish")
-    id("signing")
+//    id("maven-publish")
+//    id("signing")
     alias(libs.plugins.maven.publish)
 }
 
@@ -41,67 +40,64 @@ tasks.withType<PublishToMavenRepository> {
 
 
 
-extra["groupId"] = "io.github.the-best-is-best"
 extra["artifactId"] = "compose-utils"
-extra["version"] = "3.0.0"
 extra["packageName"] = "ComposeUtils"
 extra["packageUrl"] = "https://github.com/the-best-is-best/compose-utils"
 extra["packageDescription"] =
     "ComposeUtils is a utility library designed to streamline development in Compose Multiplatform projects. This package provides a set of platform-specific utilities and shared abstractions tailored for use in Compose environments across Android, iOS, and other platforms supported by Kotlin Multiplatform. With tools for managing coroutine dispatchers, accessing platform information, handling preferences, and launching URLs, ComposeUtils simplifies cross-platform development by offering consistent, easy-to-use interfaces and functions that work seamlessly in Compose-based projects."
 extra["system"] = "GITHUB"
-extra["issueUrl"] = "https://github.com/the-best-is-best/compose-utils/issues"
-extra["connectionGit"] = "https://github.com/the-best-is-best/compose-utils.git"
+
 
 extra["developerName"] = "Michelle Raouf"
 extra["developerNameId"] = "MichelleRaouf"
 extra["developerEmail"] = "eng.michelle.raouf@gmail.com"
 
-
-
-mavenPublishing {
-    coordinates(
-        extra["groupId"].toString(),
-        extra["artifactId"].toString(),
-        extra["version"].toString()
-    )
-
-    publishToMavenCentral(SonatypeHost.S01, true)
-    signAllPublications()
-
-    pom {
-        name.set(extra["packageName"].toString())
-        description.set(extra["packageDescription"].toString())
-        url.set(extra["packageUrl"].toString())
-        licenses {
-            license {
-                name.set("Apache-2.0")
-                url.set("https://opensource.org/licenses/Apache-2.0")
-            }
-        }
-        issueManagement {
-            system.set(extra["system"].toString())
-            url.set(extra["issueUrl"].toString())
-        }
-        scm {
-            connection.set(extra["connectionGit"].toString())
-            url.set(extra["packageUrl"].toString())
-        }
-        developers {
-            developer {
-                id.set(extra["developerNameId"].toString())
-                name.set(extra["developerName"].toString())
-                email.set(extra["developerEmail"].toString())
-            }
-        }
-    }
-
-}
-
-
-signing {
-    useGpgCmd()
-    sign(publishing.publications)
-}
+//
+//
+//mavenPublishing {
+//    coordinates(
+//        extra["groupId"].toString(),
+//        extra["artifactId"].toString(),
+//        extra["version"].toString()
+//    )
+//
+//    publishToMavenCentral(SonatypeHost.S01, true)
+//    signAllPublications()
+//
+//    pom {
+//        name.set(extra["packageName"].toString())
+//        description.set(extra["packageDescription"].toString())
+//        url.set(extra["packageUrl"].toString())
+//        licenses {
+//            license {
+//                name.set("Apache-2.0")
+//                url.set("https://opensource.org/licenses/Apache-2.0")
+//            }
+//        }
+//        issueManagement {
+//            system.set(extra["system"].toString())
+//            url.set(extra["issueUrl"].toString())
+//        }
+//        scm {
+//            connection.set(extra["connectionGit"].toString())
+//            url.set(extra["packageUrl"].toString())
+//        }
+//        developers {
+//            developer {
+//                id.set(extra["developerNameId"].toString())
+//                name.set(extra["developerName"].toString())
+//                email.set(extra["developerEmail"].toString())
+//            }
+//        }
+//    }
+//
+//}
+//
+//
+//signing {
+//    useGpgCmd()
+//    sign(publishing.publications)
+//}
 
 
 kotlin {

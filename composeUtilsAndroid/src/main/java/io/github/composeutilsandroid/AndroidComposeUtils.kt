@@ -1,16 +1,16 @@
-package io.github.compose_utils
+package io.github.composeutilsandroid
 
 import android.app.Activity
 import java.lang.ref.WeakReference
 
-object AndroidUtils {
+object AndroidComposeUtils {
     private var activity: WeakReference<Activity?> = WeakReference(null)
 
-    internal fun getActivity(): Activity {
+    fun getActivity(): Activity {
         return activity.get()!!
     }
 
     fun initialization(activity: Activity) {
-        this.activity = WeakReference(activity)
+        AndroidComposeUtils.activity = WeakReference(activity)
     }
 }
