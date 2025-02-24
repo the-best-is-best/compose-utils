@@ -33,8 +33,8 @@ projects.
 > - **Compose Utils Navigation**: [`Compose Utils Navigation`](composeUtilsNavigation/README.md)
 
 > - **Ktor Error Handling**: [`Compose Ktor Error Handler`](ktorErrorHandler/README.md)
-> - **Shared Preferences**: [
-    `compose-utils-prefs`](https://central.sonatype.com/artifact/io.github.compose-utils-prefs)
+> - **Network Connectivity**: [
+    `NetWorkConnectivity`](networkConnectivity/README.md)
 >
 > The old `compose-utils` package **will no longer receive updates**.
 
