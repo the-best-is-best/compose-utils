@@ -1,54 +1,58 @@
 package io.github.compose_utils.network_checker
 
-import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import java.net.NetworkInterface
 
 actual class NetworkChecker {
-    actual suspend fun getNetworkStatus(): NetworkStatus {
-        return jvmGetNetworkStatus()
+    private val _networkStatusFlow = MutableStateFlow(jvmGetNetworkStatus())
+
+    actual val networkStatusFlow: Flow<NetworkStatus> = _networkStatusFlow
+
+    init {
+        CoroutineScope(Dispatchers.IO).launch {
+            while (isActive) {
+                _networkStatusFlow.value = jvmGetNetworkStatus()
+                delay(5000) // Adjust delay if needed
+            }
+        }
     }
 
-    actual val networkStatusFlow: Flow<NetworkStatus> = callbackFlow {
-        while (isActive) {
-            trySend(jvmGetNetworkStatus()) // تحديث الحالة وإرسالها
-            delay(5000) // تحديث كل 5 ثوانٍ (يمكن تغييره حسب الحاجة)
-        }
-        awaitClose { /* لا يوجد شيء للإغلاق هنا */ }
-    }
+    actual suspend fun getNetworkStatus(): NetworkStatus = jvmGetNetworkStatus()
 
     private fun jvmGetNetworkStatus(): NetworkStatus {
-        val interfaces = NetworkInterface.getNetworkInterfaces().toList()
-            .filter {
-                it.isUp && !it.isLoopback && !it.name.startsWith("utun") && it.name !in listOf(
-                    "llw0",
-                    "awdl0"
-                )
-            } // استبعاد الشبكات غير المفيدة
+        val interfaces = NetworkInterface.getNetworkInterfaces()?.toList().orEmpty()
+            .filter { it.isUp && !it.isLoopback }
 
         val networkType = when {
-            interfaces.any {
-                it.name == "en0" || it.displayName.contains(
-                    "Wi-Fi",
-                    ignoreCase = true
-                ) || it.name.startsWith("wlan")
-            } -> NetworkType.WIFI
+            interfaces.hasInterface("en0", "Wi-Fi", "wlan") -> NetworkType.WIFI
+            interfaces.hasInterface(
+                "en",
+                "Ethernet",
+                "Local Area Connection"
+            ) -> NetworkType.ETHERNET
 
-            interfaces.any {
-                it.name.startsWith("en") || it.displayName.contains(
-                    "Ethernet",
-                    ignoreCase = true
-                ) || it.displayName.contains("Local Area Connection", ignoreCase = true)
-            } -> NetworkType.ETHERNET
-
-            interfaces.any { it.name.startsWith("rmnet") || it.name.startsWith("pdp") } -> NetworkType.MOBILE
+            interfaces.hasInterface("rmnet", "pdp") -> NetworkType.CELLULAR
             else -> NetworkType.NONE
         }
 
-        val isConnected = networkType != NetworkType.NONE
-        return NetworkStatus(isConnected, networkType)
+        return NetworkStatus(networkType != NetworkType.NONE, networkType)
+    }
+
+    private fun List<NetworkInterface>.hasInterface(vararg keywords: String): Boolean {
+        return any { iface ->
+            keywords.any { keyword ->
+                iface.name.contains(keyword, ignoreCase = true) || iface.displayName.contains(
+                    keyword,
+                    ignoreCase = true
+                )
+            }
+        }
     }
 }
+

@@ -49,9 +49,7 @@ actual class NetworkChecker {
         }
 
         awaitClose {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                connectivityManager.unregisterNetworkCallback(callback)
-            }
+            connectivityManager.unregisterNetworkCallback(callback)
         }
     }
 
@@ -70,7 +68,8 @@ actual class NetworkChecker {
 
             when {
                 capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> NetworkType.WIFI
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> NetworkType.MOBILE
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> NetworkType.CELLULAR
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> NetworkType.ETHERNET
                 else -> NetworkType.NONE
             }
         } else {
@@ -78,7 +77,7 @@ actual class NetworkChecker {
             val networkInfo = connectivityManager.activeNetworkInfo
             when (networkInfo?.type) {
                 ConnectivityManager.TYPE_WIFI -> NetworkType.WIFI
-                ConnectivityManager.TYPE_MOBILE -> NetworkType.MOBILE
+                ConnectivityManager.TYPE_MOBILE -> NetworkType.CELLULAR
                 else -> NetworkType.NONE
             }
         }

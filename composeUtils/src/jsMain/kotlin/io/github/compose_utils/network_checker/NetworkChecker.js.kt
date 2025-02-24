@@ -34,7 +34,7 @@ actual class NetworkChecker {
 
         val networkType = when (connection?.type) {
             "wifi" -> NetworkType.WIFI
-            "cellular" -> NetworkType.MOBILE
+            "cellular" -> NetworkType.CELLULAR
             else -> NetworkType.NONE
         }
 

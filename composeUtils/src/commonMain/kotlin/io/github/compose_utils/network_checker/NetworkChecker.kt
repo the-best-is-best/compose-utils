@@ -14,5 +14,5 @@ data class NetworkStatus(
 )
 
 enum class NetworkType {
-    WIFI, MOBILE, ETHERNET, UNKNOWN, NONE
+    WIFI, CELLULAR, ETHERNET, NONE
 }

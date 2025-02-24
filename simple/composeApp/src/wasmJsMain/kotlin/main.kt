@@ -1,10 +1,10 @@
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.CanvasBasedWindow
-import io.github.sample.App
+import io.github.sample.NetworkConnectivityScreen
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
     CanvasBasedWindow("sample") {
-        App()
+        NetworkConnectivityScreen()
     }
 }
