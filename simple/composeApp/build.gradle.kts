@@ -27,6 +27,10 @@ kotlin {
         browser()
         binaries.executable()
     }
+    js {
+        browser()
+        binaries.executable()
+    }
 
     listOf(
         iosX64(),
@@ -78,6 +82,20 @@ kotlin {
 
     }
 }
+
+tasks.register<Copy>("copyWasmResources") {
+    from("src/wasmJsMain/resources") // مجلد الموارد
+    into("build/dist/wasmJs/productionExecutable") // الدليل الذي يبحث فيه المتصفح
+}
+
+tasks.named("wasmJsBrowserDistribution") {
+    dependsOn("copyWasmResources")
+}
+
+tasks.named("jsRun") {
+    dependsOn("jsBrowserDistribution")
+}
+
 
 
 android {

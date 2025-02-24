@@ -1,5 +1,4 @@
 [versions]
-konnectivity = "0.1-alpha01"
 kotlin = "2.1.10"
 compose = "1.7.3"
 agp = "8.7.1"

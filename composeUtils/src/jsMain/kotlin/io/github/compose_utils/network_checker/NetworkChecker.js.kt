@@ -1,43 +1,33 @@
 package io.github.compose_utils.network_checker
 
-import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 actual class NetworkChecker {
+    private val _networkStatusFlow = MutableStateFlow(getJsNetworkStatus())
+    private val networkStatusStatusFlow: StateFlow<NetworkStatus> = _networkStatusFlow.asStateFlow()
+
+    init {
+        val onlineListener: () -> Unit = { _networkStatusFlow.value = getJsNetworkStatus() }
+        val offlineListener: () -> Unit = { _networkStatusFlow.value = getJsNetworkStatus() }
+
+        val jsOnlineListener = onlineListener.unsafeCast<() -> Unit>()
+        val jsOfflineListener = offlineListener.unsafeCast<() -> Unit>()
+
+        js("window.addEventListener('online', jsOnlineListener)")
+        js("window.addEventListener('offline', jsOfflineListener)")
+    }
+
     actual suspend fun getNetworkStatus(): NetworkStatus {
-        return jsGetNetworkStatus()
+        return getJsNetworkStatus()
     }
 
-    actual val networkStatusFlow: Flow<NetworkStatus> = callbackFlow {
-        fun updateStatus() {
-            trySend(jsGetNetworkStatus())
-        }
-
-        // تحديث الحالة عند الاتصال أو فقدانه
-        js("window.addEventListener('online', updateStatus)")
-        js("window.addEventListener('offline', updateStatus)")
-
-        // إرسال الحالة المبدئية
-        updateStatus()
-
-        awaitClose {
-            js("window.removeEventListener('online', updateStatus)")
-            js("window.removeEventListener('offline', updateStatus)")
-        }
-    }
-
-    private fun jsGetNetworkStatus(): NetworkStatus {
-        val connection =
-            js("navigator.connection || navigator.mozConnection || navigator.webkitConnection")
+    private fun getJsNetworkStatus(): NetworkStatus {
         val isConnected = js("navigator.onLine") as Boolean
-
-        val networkType = when (connection?.type) {
-            "wifi" -> NetworkType.WIFI
-            "cellular" -> NetworkType.CELLULAR
-            else -> NetworkType.NONE
-        }
-
-        return NetworkStatus(isConnected, networkType)
+        return NetworkStatus(isConnected, NetworkType.UNKNOWN) // لا يوجد دعم رسمي لنوع الشبكة
     }
+
+    actual val networkStatusFlow: Flow<NetworkStatus> = networkStatusStatusFlow
 }
