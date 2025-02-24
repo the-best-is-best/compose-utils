@@ -37,7 +37,7 @@ include(":simple:composeApp")
 
 include(":composeUtilsAndroid")
 
-include(":networkConectivity")
+include(":networkConnectivity")
 include(":composeUtilsCore")
 include(":composeUtilsNavigation")
 include(":ktorErrorHandler")

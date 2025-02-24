@@ -21,6 +21,23 @@ handling preferences, and launching URLs, ComposeUtils simplifies cross-platform
 offering consistent, easy-to-use interfaces and functions that work seamlessly in Compose-based
 projects.
 
+> ⚠️ **Deprecated Notice**: The `compose-utils` package is now split into multiple smaller packages
+> for better modularity and maintenance.  
+> Please migrate to the new packages:
+>
+> - **Android Utils**:
+    [`Compose Utils Android`](composeUtilsAndroid/README.md)
+
+> - **Compose Utils**: [`Compose Utils`](composeUtilsCore/README.md)
+
+> - **Compose Utils Navigation**: [`Compose Utils Navigation`](composeUtilsNavigation/README.md)
+
+> - **Ktor Error Handling**: [`Compose Ktor Error Handler`](ktorErrorHandler/README.md)
+> - **Shared Preferences**: [
+    `compose-utils-prefs`](https://central.sonatype.com/artifact/io.github.compose-utils-prefs)
+>
+> The old `compose-utils` package **will no longer receive updates**.
+
 ## Download
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.the-best-is-best/compose-utils)](https://central.sonatype.com/artifact/io.github.the-best-is-best/compose-utils)

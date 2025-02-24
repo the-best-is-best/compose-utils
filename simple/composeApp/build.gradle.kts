@@ -54,7 +54,7 @@ kotlin {
             implementation(libs.navigation.compose)
 
 //            implementation(project(":composeUtils"))
-            implementation(project(":networkConectivity"))
+            implementation(project(":networkConnectivity"))
             implementation(project(":composeUtilsCore"))
             implementation(project(":composeUtilsNavigation"))
             implementation(project(":ktorErrorHandler"))
