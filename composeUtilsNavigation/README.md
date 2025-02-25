@@ -23,7 +23,7 @@ Add the dependency to your Kotlin Multiplatform project:
 
 ```kotlin
 dependencies {
-    implementation("io.github.compose_utils_navigation:compose-utils-navigation:<latest-version>")
+    implementation("io.github.the-best-is-best:compose-utils-navigation:<latest-version>")
 }
 ```
 
