@@ -21,7 +21,7 @@ Add the dependency to your Kotlin Multiplatform project:
 
 ```kotlin
 dependencies {
-    implementation("io.github.ktor_error_handler:compose-utils-ktor-error-handler:<latest-version>")
+    implementation("io.github.the-best-is-best:compose-utils-ktor-error-handler:<latest-version>")
 }
 ```
 
