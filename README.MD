@@ -28,7 +28,7 @@ projects.
 > - **Android Utils**:
     [`Compose Utils Android`](composeUtilsAndroid/README.md)
 
-> - **Compose Utils**: [`Compose Utils`](composeUtilsCore/README.md)
+> - **Compose Utils Core**: [`Compose Utils Core`](composeUtilsCore/README.md)
 
 > - **Compose Utils Navigation**: [`Compose Utils Navigation`](composeUtilsNavigation/README.md)
 
