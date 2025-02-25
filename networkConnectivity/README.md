@@ -20,7 +20,7 @@ Add the dependency to your Kotlin Multiplatform project:
 
 ```kotlin
 dependencies {
-    implementation("io.github.network_connectivity:compose-utils-network-connectivity:<latest-version>")
+    implementation("io.github.the-best-is-best:compose-utils-network-connectivity:<latest-version>")
 }
 ```
 
