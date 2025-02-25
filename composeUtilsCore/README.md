@@ -20,7 +20,7 @@ Add the dependency to your Kotlin Multiplatform project:
 
 ```kotlin
 dependencies {
-    implementation("io.github.compose_utils_core:compose-utils-core:<latest-version>")
+    implementation("io.github.the-best-is-best:compose-utils-core:<latest-version>")
 }
 ```
 
