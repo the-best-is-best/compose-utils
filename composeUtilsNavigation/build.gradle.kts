@@ -13,6 +13,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose)
     alias(libs.plugins.android.library)
+    id("io.github.ttypic.swiftklib") version "0.6.4"
     id("maven-publish")
     id("signing")
     alias(libs.plugins.maven.publish)
@@ -119,7 +120,14 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = packageNameSpace
-            isStatic = true
+            isStatic = false
+        }
+        it.compilations {
+            val main by getting {
+                cinterops {
+                    create("BackGestureHandler")
+                }
+            }
         }
     }
 
@@ -130,6 +138,9 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+
+            implementation(libs.androidx.navigation.composee)
+
         }
 
         commonTest.dependencies {
@@ -204,5 +215,11 @@ compose.desktop {
                 bundleID = "org.company.app.desktopApp"
             }
         }
+    }
+}
+swiftklib {
+    create("BackGestureHandler") {
+        path = file("native/BackGestureHandler")
+        packageName("io.github.back_gesture_handler")
     }
 }
