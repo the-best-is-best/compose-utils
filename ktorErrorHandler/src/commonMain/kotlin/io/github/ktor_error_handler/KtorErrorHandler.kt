@@ -109,7 +109,7 @@ object KtorErrorHandler {
             }
 
             is IOException -> {
-                Failure(statusCode = 0, messageError = noInternetConnection)
+                Failure(statusCode = 0, messageError = defaultError)
             }
 
             else -> Failure(statusCode = 1, messageError = unknownError)
