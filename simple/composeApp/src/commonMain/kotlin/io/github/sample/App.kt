@@ -25,8 +25,6 @@ internal fun App() = AppTheme {
                 NetworkConnectivityScreen(navController)
             }
             composable("/testBack/{handleBack}") { backStackEntry ->
-                val handleBack =
-                    backStackEntry.arguments?.getString("handleBack")?.toBoolean() ?: false
                 SecondScreen(navController)
             }
         }

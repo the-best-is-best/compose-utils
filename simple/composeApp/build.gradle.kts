@@ -48,10 +48,13 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
+            implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation(libs.androidx.navigation.composee)
+//            implementation("org.jetbrains.compose.ui:ui-backhandler:1.8.0-beta01")
 
-            implementation(libs.navigation.compose)
+
 
 //            implementation(project(":composeUtils"))
             implementation(project(":networkConnectivity"))
