@@ -20,8 +20,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import io.github.compose.network_checker.NetworkChecker
-import io.github.compose.network_checker.NetworkStatus
+import io.github.network_connectivity.network_checker.NetworkChecker
+import io.github.network_connectivity.network_checker.NetworkStatus
 import kotlinx.coroutines.launch
 
 @Composable

@@ -52,15 +52,14 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.navigation.composee)
-//            implementation("org.jetbrains.compose.ui:ui-backhandler:1.8.0-beta01")
-
+            implementation(libs.ui.backhandler)
 
 
 //            implementation(project(":composeUtils"))
             implementation(project(":networkConnectivity"))
             implementation(project(":composeUtilsCore"))
             implementation(project(":composeUtilsNavigation"))
-            implementation(project(":ktorErrorHandler"))
+            //implementation(project(":ktorErrorHandler"))
 
 
 
@@ -76,7 +75,7 @@ kotlin {
             implementation(compose.uiTooling)
             implementation(libs.androidx.activityCompose)
 
-            implementation(project(":composeUtilsAndroid"))
+//            implementation(project(":composeUtilsAndroid"))
 
 
         }

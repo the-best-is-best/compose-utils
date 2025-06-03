@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import io.github.compose_utils_core.openUrl
 
 @Composable
 fun FirstScreen(navController: NavController) {
@@ -44,6 +45,13 @@ fun FirstScreen(navController: NavController) {
             navController.navigate("/testBack/true")
         }) {
             Text("test back")
+
+        }
+        Spacer(Modifier.height(10.dp))
+        ElevatedButton(onClick = {
+            openUrl("https://www.google.com/")
+        }) {
+            Text("open url")
 
         }
     }

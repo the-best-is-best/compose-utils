@@ -3,7 +3,6 @@
 import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem
 import org.jetbrains.compose.ExperimentalComposeLibrary
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
@@ -13,7 +12,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose)
     alias(libs.plugins.android.library)
-    id("io.github.ttypic.swiftklib") version "0.6.4"
     id("maven-publish")
     id("signing")
     alias(libs.plugins.maven.publish)
@@ -120,15 +118,8 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = packageNameSpace
-            isStatic = false
         }
-        it.compilations {
-            val main by getting {
-                cinterops {
-                    create("BackGestureHandler")
-                }
-            }
-        }
+
     }
 
     sourceSets {
@@ -171,14 +162,11 @@ kotlin {
 
 android {
     namespace = extra["packageNameSpace"].toString()
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 21
-        compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
-        }
+
         buildFeatures {
             //enables a Compose tooling support in the AndroidStudio
             compose = true
@@ -186,40 +174,3 @@ android {
     }
 }
 
-//https://developer.android.com/develop/ui/compose/testing#setup
-dependencies {
-    androidTestImplementation(libs.androidx.uitest.junit4)
-    debugImplementation(libs.androidx.uitest.testManifest)
-    //temporary fix: https://youtrack.jetbrains.com/issue/CMP-5864
-    androidTestImplementation("androidx.test:monitor") {
-        version { strictly("1.6.1") }
-    }
-}
-compose.desktop {
-    application {
-        mainClass = "MainKt"
-
-        nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = packageNameSpace
-            packageVersion = "1.0.0"
-
-            linux {
-                iconFile.set(project.file("desktopAppIcons/LinuxIcon.png"))
-            }
-            windows {
-                iconFile.set(project.file("desktopAppIcons/WindowsIcon.ico"))
-            }
-            macOS {
-                iconFile.set(project.file("desktopAppIcons/MacosIcon.icns"))
-                bundleID = "org.company.app.desktopApp"
-            }
-        }
-    }
-}
-swiftklib {
-    create("BackGestureHandler") {
-        path = file("native/BackGestureHandler")
-        packageName("io.github.back_gesture_handler")
-    }
-}

@@ -1,12 +1,11 @@
 package io.github.compose_utils_core
 
 import android.content.Context
-import io.github.composeutilsandroid.AndroidComposeUtils
 
 actual class SharedPrefs actual constructor() {
     private val preferenceName = "sharedPrefs"
 
-    private val context = AndroidComposeUtils.getActivity()
+    private val context = applicationContext
 
 
     actual fun put(key: String, value: Int) {

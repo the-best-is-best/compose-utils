@@ -17,11 +17,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.backhandler.BackHandler
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import compose_utils_navigation.BackButtonHandler
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SecondScreen(navController: NavController) {
     var showAskBackDialog by remember { mutableStateOf(false) }
@@ -49,7 +51,7 @@ fun SecondScreen(navController: NavController) {
         )
     }
    var handleBackButton by remember { mutableStateOf(false) }
-    BackButtonHandler(handleBackButton) { showAskBackDialog = true }
+    BackHandler(handleBackButton) { showAskBackDialog = true }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -60,7 +62,11 @@ fun SecondScreen(navController: NavController) {
        Text("Second screen")
         Spacer(Modifier.height(10.dp))
         ElevatedButton(onClick = {
-            navController.popBackStack()
+            if (handleBackButton) {
+                showAskBackDialog = true
+            } else {
+                navController.popBackStack()
+            }
         }) {
             Text("Go Back")
         }
