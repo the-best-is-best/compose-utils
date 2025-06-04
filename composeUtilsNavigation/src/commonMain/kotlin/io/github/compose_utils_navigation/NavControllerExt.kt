@@ -1,4 +1,4 @@
-package compose_utils_navigation
+package io.github.compose_utils_navigation
 
 import androidx.navigation.NavController
 

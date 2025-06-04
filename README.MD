@@ -21,29 +21,27 @@ handling preferences, and launching URLs, ComposeUtils simplifies cross-platform
 offering consistent, easy-to-use interfaces and functions that work seamlessly in Compose-based
 projects.
 
+## 📦 Utility Libraries
 
-> - **Compose Utils Core**: [`Compose Utils Core`](composeUtilsCore/README.md)
+- **Compose Utils Core**  
+  ➜ [`Compose Utils Core`](composeUtilsCore/README.md)
 
-> - **Compose Utils Navigation**: [`Compose Utils Navigation`](composeUtilsNavigation/README.md)
+- **Compose Utils Navigation**  
+  ➜ [`Compose Utils Navigation`](composeUtilsNavigation/README.md)
 
-> - **Ktor Error Handling**: [`Compose Ktor Error Handler`](ktorErrorHandler/README.md)
-> - Deprecation Notice
-    ⚠️ Deprecated
-    This library is no longer maintained or updated.
+---
 
-However, you're free to copy and reuse the source code if it helps your case.
-You can adjust it to match your own API error structure and logic.
+## 🌐 Networking
 
+- **Network Connectivity**  
+  ➜ [`Network Connectivity`](networkConnectivity/README.md)
 
-> - **Network Connectivity**: [
-    `NetWorkConnectivity`](networkConnectivity/README.md)
->
-## Download
-
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.the-best-is-best/compose-utils)](https://central.sonatype.com/artifact/io.github.the-best-is-best/compose-utils)
-
-Compose Utils is available on `mavenCentral()`.
-
+- **Ktor Error Handling**  
+  ⚠️ **Deprecated**  
+  ➜ [`Compose Ktor Error Handler`](ktorErrorHandler/README.md)
+  > This library is no longer maintained or updated.  
+  > You are free to copy and reuse its source code as needed.  
+  > Feel free to adapt the logic to match your API error response structure and validation format.
 
 ## open url
 
