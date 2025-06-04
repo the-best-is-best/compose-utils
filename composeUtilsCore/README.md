@@ -33,12 +33,6 @@ val platformData = PlatformData()
 println("Device: ${platformData.deviceName}, OS: ${platformData.version}")
 ```
 
-### Handling Dispatchers
-
-```kotlin
-val dispatcher = providerDispatcher().io
-```
-
 ### Opening URLs
 
 ```kotlin
