@@ -13,10 +13,10 @@ actual fun openUrl(url: String) {
     }
 }
 
-fun openUrl(url: NSURL) {
-    val success = NSWorkspace.sharedWorkspace.openURL(url)
+fun openUrl(nsUrl: NSURL) {
+    val success = NSWorkspace.sharedWorkspace.openURL(nsUrl)
     if (!success) {
-        println("Failed to open URL: $url")
+        println("Failed to open URL: $nsUrl")
     }
 }
 
