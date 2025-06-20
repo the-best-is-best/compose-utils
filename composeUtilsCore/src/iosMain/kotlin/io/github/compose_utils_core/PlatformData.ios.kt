@@ -3,8 +3,11 @@ package io.github.compose_utils_core
 import platform.UIKit.UIDevice
 
 actual class PlatformData {
+    actual val platform: Platform
+        get() = Platform.IOS
+
     actual val name: String
-        get() = "apple"
+        get() = "iOS"
 
     actual val deviceName: String
         get() = UIDevice.currentDevice.name
@@ -17,6 +20,4 @@ actual class PlatformData {
 
     actual val manufacturer: String
         get() = "Apple"
-
-
 }

@@ -41,7 +41,7 @@ tasks.withType<PublishToMavenRepository> {
 
 extra["packageNameSpace"] = "io.github.compose_utils_navigation"
 extra["artifactId"] = "compose-utils-navigation"
-extra["packageName"] = "Compose Utils Core"
+extra["packageName"] = "Compose Utils Navigation"
 extra["packageDescription"] =
     "A lightweight and efficient navigation utility for Compose Multiplatform (CMP), simplifying navigation management across multiple platform"
 
@@ -114,8 +114,11 @@ kotlin {
     listOf(
         iosX64(),
         iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
+        iosSimulatorArm64(),
+        macosArm64(),
+        macosX64(),
+
+        ).forEach {
         it.binaries.framework {
             baseName = packageNameSpace
         }

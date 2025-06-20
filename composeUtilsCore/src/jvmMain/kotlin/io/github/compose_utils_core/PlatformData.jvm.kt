@@ -1,6 +1,8 @@
 package io.github.compose_utils_core
 
 actual class PlatformData {
+    actual val platform: Platform
+        get() = Platform.Desktop
 
     actual val name: String
         get() = "jvm"

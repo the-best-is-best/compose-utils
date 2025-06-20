@@ -3,6 +3,9 @@ package io.github.compose_utils_core
 import android.os.Build
 
 actual class PlatformData {
+    actual val platform: Platform
+        get() = Platform.Android
+
     actual val name: String
         get() = "android"
 
