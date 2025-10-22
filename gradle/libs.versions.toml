@@ -1,23 +1,22 @@
 [versions]
-core = "1.16.0"
+core = "1.17.0"
 coreKtxVersion = "1.16.0"
-kotlin = "2.1.21"
-compose = "1.8.1"
-agp = "8.10.1"
-androidx-activityCompose = "1.10.1"
-androidx-uiTest = "1.7.8"
-kotlinxBrowser = "0.3"
-kotlinxCoroutinesCore = "1.10.1"
-maven-publish = "0.32.0"
-ktor = "3.1.3"
-coreKtx = "1.15.0"
+kotlin = "2.2.20"
+compose = "1.9.1"
+compose-navigation = "2.9.1"
+agp = "8.13.0"
+androidx-activityCompose = "1.11.0"
+androidx-uiTest = "1.9.3"
+kotlinxBrowser = "0.5.0"
+kotlinxCoroutinesCore = "1.10.2"
+maven-publish = "0.34.0"
+ktor = "3.3.1"
+coreKtx = "1.17.0"
 junit = "4.13.2"
-junitVersion = "1.2.1"
-espressoCore = "3.6.1"
-appcompat = "1.7.0"
-androidx-navigation = "2.9.0-beta01"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+appcompat = "1.7.1"
 startupRuntime = "1.2.0"
-uiBackhandler = "1.8.1"
 
 
 
@@ -40,9 +39,9 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-androidx-navigation-composee = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
+androidx-navigation-composee = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "compose-navigation" }
 androidx-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startupRuntime" }
-ui-backhandler = { module = "org.jetbrains.compose.ui:ui-backhandler", version.ref = "uiBackhandler" }
+ui-backhandler = { module = "org.jetbrains.compose.ui:ui-backhandler", version.ref = "compose" }
 
 [plugins]
 
