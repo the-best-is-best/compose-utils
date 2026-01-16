@@ -126,24 +126,20 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
+            implementation(libs.runtime)
+            implementation(libs.foundation)
+            implementation(libs.material3)
+            implementation(libs.components.resources)
+            implementation(libs.ui.tooling.preview)
 
             implementation(libs.androidx.navigation.composee)
 
         }
 
-        commonTest.dependencies {
-            implementation(kotlin("test"))
-            @OptIn(ExperimentalComposeLibrary::class)
-            implementation(compose.uiTest)
-        }
+
 
         androidMain.dependencies {
-            implementation(compose.uiTooling)
+            implementation(libs.ui.tooling)
             implementation(libs.androidx.activityCompose)
         }
 
@@ -152,7 +148,7 @@ kotlin {
         }
 
         jsMain.dependencies {
-            implementation(compose.html.core)
+            implementation(libs.html.core)
         }
 
         iosMain.dependencies {
@@ -167,7 +163,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 23
 
         buildFeatures {
             //enables a Compose tooling support in the AndroidStudio

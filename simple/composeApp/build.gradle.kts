@@ -108,7 +108,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 23
         targetSdk = 36
 
         applicationId = "org.company.app.androidApp"
@@ -119,15 +119,15 @@ android {
     }
 }
 
-//https://developer.android.com/develop/ui/compose/testing#setup
-dependencies {
-    androidTestImplementation(libs.androidx.uitest.junit4)
-    debugImplementation(libs.androidx.uitest.testManifest)
-    //temporary fix: https://youtrack.jetbrains.com/issue/CMP-5864
-    androidTestImplementation("androidx.test:monitor") {
-        version { strictly("1.6.1") }
-    }
-}
+////https://developer.android.com/develop/ui/compose/testing#setup
+//dependencies {
+//    androidTestImplementation(libs.androidx.uitest.junit4)
+//    debugImplementation(libs.androidx.uitest.testManifest)
+//    //temporary fix: https://youtrack.jetbrains.com/issue/CMP-5864
+//    androidTestImplementation("androidx.test:monitor") {
+//        version { strictly("1.6.1") }
+//    }
+//}
 
 compose.desktop {
     application {
