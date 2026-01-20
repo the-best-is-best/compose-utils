@@ -33,11 +33,12 @@ dependencyResolutionManagement {
 }
 
 //include(":composeUtils")
-include(":simple:composeApp")
+include(":simple:sharedUI")
 
 //include(":composeUtilsAndroid")
 
 include(":networkConnectivity")
 include(":composeUtilsCore")
 include(":composeUtilsNavigation")
+include(":simple:androidSimple")
 //include(":ktorErrorHandler")

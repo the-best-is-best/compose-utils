@@ -10,7 +10,7 @@ import io.github.compose_utils_core.PlatformData
 import io.github.sample.theme.AppTheme
 
 @Composable
-internal fun App() = AppTheme {
+fun App() = AppTheme {
 
     val navController = rememberNavController()
     LaunchedEffect(Unit) {

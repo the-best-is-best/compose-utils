@@ -4,21 +4,16 @@ import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose)
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.androidKotlinMultiplatformLibrary)
 }
 
 kotlin {
     jvmToolchain(17)
-    androidTarget {
-        //https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-test.html
-        instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
-    }
 
     jvm()
 
@@ -62,7 +57,6 @@ kotlin {
             //implementation(project(":ktorErrorHandler"))
 
 
-
         }
 
         commonTest.dependencies {
@@ -94,6 +88,13 @@ kotlin {
         }
 
     }
+
+    android {
+        namespace = "io.github.sample"
+        compileSdk = 36
+        minSdk = 23
+
+    }
 }
 
 tasks.register<Copy>("copyWasmResources") {
@@ -101,33 +102,6 @@ tasks.register<Copy>("copyWasmResources") {
     into("build/dist/wasmJs/productionExecutable") // الدليل الذي يبحث فيه المتصفح
 }
 
-
-
-android {
-    namespace = "io.github.sample"
-    compileSdk = 36
-
-    defaultConfig {
-        minSdk = 23
-        targetSdk = 36
-
-        applicationId = "org.company.app.androidApp"
-        versionCode = 1
-        versionName = "1.0.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-}
-
-////https://developer.android.com/develop/ui/compose/testing#setup
-//dependencies {
-//    androidTestImplementation(libs.androidx.uitest.junit4)
-//    debugImplementation(libs.androidx.uitest.testManifest)
-//    //temporary fix: https://youtrack.jetbrains.com/issue/CMP-5864
-//    androidTestImplementation("androidx.test:monitor") {
-//        version { strictly("1.6.1") }
-//    }
-//}
 
 compose.desktop {
     application {

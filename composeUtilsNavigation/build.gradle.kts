@@ -1,16 +1,14 @@
 @file:OptIn(ExperimentalKotlinGradlePluginApi::class)
 
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem
-import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.androidKotlinMultiplatformLibrary)
     id("maven-publish")
     id("signing")
     alias(libs.plugins.maven.publish)
@@ -93,10 +91,7 @@ val packageNameSpace = extra["packageNameSpace"].toString()
 
 kotlin {
     jvmToolchain(17)
-    androidTarget {
-        //https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-test.html
-        instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
-    }
+
 
     jvm()
 
@@ -155,20 +150,15 @@ kotlin {
         }
 
     }
-}
 
 
-android {
-    namespace = extra["packageNameSpace"].toString()
-    compileSdk = 36
-
-    defaultConfig {
+    android {
+        namespace = project.extra["packageNameSpace"].toString()
+        compileSdk = 36
         minSdk = 23
 
-        buildFeatures {
-            //enables a Compose tooling support in the AndroidStudio
-            compose = true
-        }
     }
 }
+
+
 
